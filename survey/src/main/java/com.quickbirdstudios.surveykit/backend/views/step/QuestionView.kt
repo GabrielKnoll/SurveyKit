@@ -62,23 +62,6 @@ abstract class QuestionView(
     override fun setupViews() {
         title?.let { InfoTextPart.title(context, it) }?.let(content::add)
         text?.let { InfoTextPart.info(context, it) }?.let(content::add)
-
-        header.onBack = { onBackListener(createResults()) }
-        // TODO add translations and move out of this class
-        header.onCancel = {
-            Dialogs.cancel(
-                context,
-                AbortDialogConfiguration(
-                    abortDialogConfiguration?.title ?: R.string.abort_dialog_title,
-                    abortDialogConfiguration?.message ?: R.string.abort_dialog_message,
-                    abortDialogConfiguration?.neutralMessage
-                        ?: R.string.abort_dialog_neutral_message,
-                    abortDialogConfiguration?.negativeMessage ?: R.string.abort_dialog_neutral_message
-                )
-            ) {
-                onCloseListener(createResults(), FinishReason.Discarded)
-            }
-        }
     }
 
     override fun onViewCreated() {

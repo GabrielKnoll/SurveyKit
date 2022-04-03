@@ -26,27 +26,7 @@ class Header @JvmOverloads constructor(
 
     var themeColor = Color.RED
         set(value) {
-            cancelButton.setTextColor(value)
-            headerBackButtonImage.background.setTint(value)
             field = value
-        }
-
-    var canCancel: Boolean
-        get() = cancelButton.visibility != View.VISIBLE
-        set(value) {
-            cancelButton.visibility = if (value) View.VISIBLE else View.GONE
-        }
-
-    var canBack: Boolean
-        get() = buttonBack.visibility != View.VISIBLE
-        set(value) {
-            buttonBack.visibility = if (value) View.VISIBLE else View.GONE
-        }
-
-    var cancelButtonText: String
-        get() = cancelButton.text.toString()
-        set(value) {
-            cancelButton.text = value
         }
 
     var label: String
@@ -55,32 +35,12 @@ class Header @JvmOverloads constructor(
             headerLabel.text = label
         }
 
-    var onBack: () -> Unit = {}
-    var onCancel: () -> Unit = {}
-
     //endregion
 
     //region Members
 
     private val root: View = View.inflate(context, R.layout.layout_header, this)
     private val headerLabel: TextView = root.findViewById(R.id.headerLabel)
-    private val buttonBack = root.findViewById<RelativeLayout>(R.id.headerBackButton).apply {
-        setOnClickListener {
-            hideKeyboard()
-            onBack()
-        }
-    }
-    private val headerBackButtonImage =
-        buttonBack.findViewById<ImageView>(R.id.headerBackButtonImage).apply {
-            background.setTint(themeColor)
-        }
-    private val cancelButton = root.findViewById<Button>(R.id.headerCancelButton).apply {
-        setTextColor(themeColor)
-        setOnClickListener {
-            hideKeyboard()
-            onCancel()
-        }
-    }
 
     //endregion
 

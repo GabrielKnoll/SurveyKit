@@ -23,7 +23,6 @@ class IntroQuestionView(
     override fun setupViews() {
         super.setupViews()
 
-        header.canBack = false
         footer.questionCanBeSkipped = false
     }
 

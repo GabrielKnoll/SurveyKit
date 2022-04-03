@@ -103,10 +103,6 @@ internal class PresenterImpl(
 
         val previousQuestionView = currentQuestionView
 
-        if(!hasPreviousStep()) {
-            questionView.questionHeader.canBack = false
-        }
-
         currentQuestionView = questionView
 
         viewContainer.addView(questionView)
